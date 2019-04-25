@@ -23,25 +23,22 @@ class App extends React.Component {
       ],
 
       todo: ''
-    }; 
+    };
   }
 
-  
+
   handleChanges = event => {
     this.setState({
-      todo : event.target.value
+      todo: event.target.value
     })
-    //console.log(this.state.todo);
   }
 
   handleAddTodo = event => {
-    console.log("HANDLE ADD TODO HAS BEEN CALLED");
     event.preventDefault();
-    let newTodo = {task:this.state.todo, id: Date.now(), completed: false};
-    console.log(newTodo);
-    this.setState( {
+    let newTodo = { task: this.state.todo, id: Date.now(), completed: false };
+    this.setState({
       todos: [...this.state.todos, newTodo],
-      todo : ''
+      todo: ''
     });
   };
 
@@ -61,25 +58,24 @@ class App extends React.Component {
 
   handleClearCompleted = event => {
     event.preventDefault();
-    let todos = this.state.todos.filter(todo => {
-      return todo.completed === false;
-    });
-    this.setState({todos: todos});
+    let todos = this.state.todos.filter(todo => todo.completed === false);
+    this.setState({ todos: todos });
   }
 
   render() {
     return (
       <div>
-        <h2>Todo List: MVP</h2>
+        <h1>Todo List: MVP</h1>
 
-        <TodoList 
-        todos = {this.state.todos} 
-        handleStrikeTodo = {this.handleStrikeTodo}  />
+        <TodoList
+          todos={this.state.todos}
+          handleStrikeTodo={this.handleStrikeTodo}
+         />
 
-        <TodoForm todo={this.state.todo} 
-        handleChanges={this.handleChanges} 
-        handleAddTodo = {this.handleAddTodo}
-        handleClearCompleted = {this.handleClearCompleted}
+        <TodoForm todo={this.state.todo}
+          handleChanges={this.handleChanges}
+          handleAddTodo={this.handleAddTodo}
+          handleClearCompleted={this.handleClearCompleted}
         />
       </div>
     );

@@ -1,20 +1,19 @@
 import React from 'react';
-import { getPortPromise } from 'portfinder';
+import './Todo.css';
 
 const Todo = props => {
-    console.log(props.todo.completed);
+    const strikedStyle = {
+        textDecoration: 'line-through',
+    }
 
-    // const strikedStyle = {
-    //     textDecoration: 'line-through'
-    // }
-
-    // const noStrikeStyle = {
-    //     textDecoration: 'none'
-    // }
+    const noStrikeStyle = {
+        textDecoration: 'none'
+    }
 
     return (
         <div 
-        style = {props.todo.completed ? { textDecoration: 'line-through' } : null}
+        className = 'todo'
+        style = {props.todo.completed ? strikedStyle : noStrikeStyle}
         onClick = {props.handleStrikeTodo}
         >
             {props.todo.task}
@@ -22,4 +21,4 @@ const Todo = props => {
     )
 }
 
-export default Todo;
+export default Todo; 
