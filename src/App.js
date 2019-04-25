@@ -35,6 +35,7 @@ class App extends React.Component {
 
   handleAddTodo = event => {
     event.preventDefault();
+    if(!this.state.todo) return;
     let newTodo = { task: this.state.todo, id: Date.now(), completed: false };
     this.setState({
       todos: [...this.state.todos, newTodo],
