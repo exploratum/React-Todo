@@ -43,19 +43,43 @@ class App extends React.Component {
       todos: [...this.state.todos, newTodo],
       todo : ''
     });
-
   };
+
+  handleStrikeTodo = event => {
+    let todos = this.state.todos.slice();
+    todos = todos.map( todo => {
+      if (todo.task === event.target.textContent) {
+        todo.completed = !todo.completed;
+        return todo;
+      }
+      else {
+        return todo;
+      }
+    });
+    this.setState({todos: todos});
+  }
+
+  handleClearCompleted = event => {
+    event.preventDefault();
+    let todos = this.state.todos.filter(todo => {
+      return todo.completed === false;
+    });
+    this.setState({todos: todos});
+  }
 
   render() {
     return (
       <div>
         <h2>Todo List: MVP</h2>
 
-        <TodoList todos = {this.state.todos} />
+        <TodoList 
+        todos = {this.state.todos} 
+        handleStrikeTodo = {this.handleStrikeTodo}  />
 
         <TodoForm todo={this.state.todo} 
         handleChanges={this.handleChanges} 
-        handleAddTodo = {this.handleAddTodo} 
+        handleAddTodo = {this.handleAddTodo}
+        handleClearCompleted = {this.handleClearCompleted}
         />
       </div>
     );
