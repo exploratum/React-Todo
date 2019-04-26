@@ -6,8 +6,10 @@ import Todo from './Todo';
 
 const TodoList = props => {
     return (
-            //<Todo/>
-            props.todos.map(todo => <Todo todo = {todo} handleStrikeTodo = {props.handleStrikeTodo}/> )
+            props.todos.map(todo => <Todo 
+            todo = {todo} 
+            handleStrikeTodo = {props.handleStrikeTodo}
+            /> )
     );
 }
 
